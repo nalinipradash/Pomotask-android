@@ -10,10 +10,8 @@ android {
         applicationId = "v4lpt.vpt.c016.TPC"
         minSdk = 24
         targetSdk = 34
-        versionCode = 102
-        versionName = "1.0.2"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        versionCode = 103
+        versionName = "1.0.3"
     }
     dependenciesInfo {
         // Disables dependency metadata when building APKs.

@@ -1,0 +1,1 @@
+fixed critical issue where the screen would not stay on in newer android versions.
