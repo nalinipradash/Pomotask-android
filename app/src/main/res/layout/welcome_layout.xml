@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#444654">
+
     <TextView
         android:id="@+id/titleBar1"
         android:layout_width="0dp"
@@ -53,29 +54,66 @@
         android:id="@+id/copyright_header_TW"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/explanationTextView"
+        app:layout_constraintBottom_toTopOf="@+id/boxContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.00"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleBar2" />
 
-    <TextView
-        android:id="@+id/explanationTextView"
-        android:layout_width="wrap_content"
+    <!-- Box Container for Text Views and EditTexts -->
+    <LinearLayout
+        android:id="@+id/boxContainer"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fontFamily="monospace"
-        android:padding="13dp"
-        android:text="@string/anleitung"
-        android:textAlignment="inherit"
-        android:textColor="#FFFFFF"
-        app:autoSizeMaxTextSize="18sp"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeTextType="uniform"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@+id/startTimerButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/copyright_header_TW" />
+        app:layout_constraintTop_toBottomOf="@+id/copyright_header_TW">
+
+        <!-- What are you going to do? -->
+        <TextView
+            android:id="@+id/whatToDoTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What are you going to do?"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/whatToDoInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
+            android:hint="Enter your answer"
+            android:textColor="#000000"
+            android:padding="10dp"
+            android:textColorHint="#888888"/>
+
+        <!-- Why? -->
+        <TextView
+            android:id="@+id/whyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Why?"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/whyInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/edit_text"
+            android:hint="Enter your answer"
+            android:textColor="#000000"
+            android:padding="10dp"
+            android:textColorHint="#888888"/>
+
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/startTimerButton"
@@ -96,10 +134,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.22"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/explanationTextView"
+        app:layout_constraintTop_toBottomOf="@+id/boxContainer"
         app:layout_constraintBottom_toBottomOf="@id/space4"
-
         app:layout_constraintWidth_percent="0.8" />
+
     <Space
         android:id="@+id/space4"
         android:layout_width="0dp"
@@ -109,6 +147,7 @@
         app:layout_constraintStart_toStartOf="@+id/startTimerButton"
         app:layout_constraintTop_toBottomOf="@+id/startTimerButton"
         android:layout_height="0dp"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/infoButton"
         android:layout_width="48dp"
@@ -175,6 +214,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/soundToggleButton"
         app:rippleColor="#33FFFFFF" />
+
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
