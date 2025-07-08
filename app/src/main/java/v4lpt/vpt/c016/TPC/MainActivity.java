@@ -169,10 +169,14 @@ public class MainActivity extends AppCompatActivity {
                 ", Vibration enabled: " + isVibrationEnabled);
 
         if (isSoundEnabled) {
-            if (isLongBreak) {
-                longBreakSound.start();
-            } else {
-                shortBreakSound.start();
+            MediaPlayer playerToUse = isLongBreak ? longBreakSound : shortBreakSound;
+            if (playerToUse != null) {
+                // If the sound is already playing, pause it first.
+                if (playerToUse.isPlaying()) {
+                    playerToUse.pause();
+                }
+                playerToUse.seekTo(0); // Rewind to the beginning
+                playerToUse.start();   // Play the sound
             }
         }
 
@@ -244,21 +248,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void setupTimer() {
         circleTimerView = findViewById(R.id.circleTimerView);
 
-        // Only play sound if sound is enabled
-        if (isSoundEnabled) {
-            longBreakSound.start();
-        }
-
-        // Add long vibration on timer start if vibration is enabled
-        if (isVibrationEnabled && vibrator != null) {
-            vibrate(LONG_VIBRATION_DURATION);
-        }
+        // This single call now correctly handles both sound and vibration
+        // for the start of the timer.
+        playTransitionEffects(true);
 
         startTimer();
     }
+
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -338,6 +338,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                // This call plays the sound for the start of a new cycle.
+                // 'true' corresponds to the work session sound/vibration.
+                playTransitionEffects(true);
+
                 timeLeftInMillis = 60 * 60 * 1000; // Reset to 1 hour
                 currentSection = 0;
                 startTimer(); // Restart the timer
